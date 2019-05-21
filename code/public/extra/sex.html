@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=cPLFTzIqWBQOMelUV19QTDFKloOotu0G"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+
+var jsondata={};
+$.getJSON('../data/data.json', function (data,status){
+   //console.log("是是不是成功读到数据"+status);
+   if( status=='success'){
+       jsondata = data[1];//在这里可以调用函数
+        //alert(jsondata)
+       var dom = document.getElementById("container");
+       var myChart = echarts.init(dom);
+       var app = {};
+
+       option = null;
+       option = {
+           title : {
+               text: '假期留校学生性别分布',
+               subtext: '天津大学',
+               x:'center'
+           },
+           tooltip : {
+               trigger: 'item',
+               formatter: "{a} <br/>{b} : {c} ({d}%)"
+           },
+           legend: {
+               orient: 'vertical',
+               left: 'left',
+               data: ['男生','女生']
+           },
+           series : [
+               {
+                   name: '假期留校学生性别分布',
+                   type: 'pie',
+                   radius : '55%',
+                   center: ['50%', '60%'],
+                   data: jsondata,
+                   itemStyle: {
+                       emphasis: {
+                           shadowBlur: 10,
+                           shadowOffsetX: 0,
+                           shadowColor: 'rgba(0, 0, 0, 0.5)'
+                       }
+                   }
+               }
+           ]
+       };
+       if (option && typeof option === "object") {
+           myChart.setOption(option, true);
+       }
+
+   }else{
+       alert('数据文件异常');
+       console.log("没有读取到本地文件："+status);
+       //return false;
+   }
+});
+
+ </script>
+  </body>
+</html>

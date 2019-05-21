@@ -1,0 +1,569 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+    background: green;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: right;
+  color: white;
+  text-align: center;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #00B7FF;
+}
+
+/*index.hbs主页背景图*/
+#index_bg{
+  position: fixed;
+  top: 0;
+  left: 0;                /*div固定屏幕左上方*/
+
+  height: 100%;
+  width: 100%;            /*div实现全屏效果*/
+
+  min-width: 50px;        /*div最小缩放值*/
+  z-index: -10;           /*div层级优先值*/
+  zoom: 1;
+  background-color: #ffffff;
+  background-repeat: no-repeat;     /*背景无重复*/
+
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;        /*图片随屏幕缩放*/
+
+  background-position: center 0;    /*背景图片位置:居中,靠左对齐*/
+  background-image: url(../images/home_bg.jpg);   /*背景图片url*/
+}
+
+/*index.hbs透明背景框*/
+.index_bgf{   /*外层div*/
+  height: 20%;
+  width: 100%;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;                /*内层div内容居中*/
+  /*background-color:rgba(204,204,204,0.5);   /*测试背景*/
+}
+.index_bgf div{ /*内层div*/
+  height: 30vw;
+  width: 60vw;
+  border: 1px solid #cccccc;                  /*内层div外边框大小及颜色*/
+  padding: auto;
+  background-color:rgba(204,204,204,0.5);     /*最后一位控制透明度*/
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;                   /*椭圆边框*/
+  -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);    /*边框阴影*/
+}
+.index_bgf div h1{
+  text-shadow: 0.1vw 0.1vw 0.1vw #000000; /*-0.1vw -0.1vw 0.1vw #ffffff;  /*字体浮雕效果*/
+  text-align: center;
+  margin-top: 3vw;
+}
+.index_bgf div div{
+  height: 20vw;
+  width: 50vw;
+  margin: 3.5vw auto;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  background-color: rgba(204,204,204,0);     /*最后一位控制透明度*/
+  box-shadow: 2px 2px 2px rgba(0,0,0,0);
+  border: 0.1vw solid rgba(0, 100, 255, 0);
+  border-radius: 1vw;
+}
+.index_bgf div div > div{
+  height: 13vw;
+  width: 200vw;
+  background: url(http://www.webhek.com/wordpress/wp-content/uploads/2018/03/collage.jpg);
+  /*background: url("http://114.115.254.117/images/cont_admin.png");*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*height: 100%;*/
+  transform: translate3d(0, 0, 0);
+}
+.index_bgf div div .mover-1 {
+  animation: moveSlideshow 60s linear infinite;
+}
+.index_bgf div div .mover-2 {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  background-position: 0 -39vw;
+  animation: moveSlideshow 20s linear infinite;
+}
+.index_bgf div div:hover .mover-2 {
+  opacity: 1;
+}
+@keyframes moveSlideshow {
+  100% {
+    transform: translateX(-66.6666%);
+  }
+}
+
+/*index.hbs滚动公告栏*/
+.index_notice{      /*外层div*/
+  height: 20%;
+  width: 50%;
+  float: left;    /*支持同一行并列div*/
+  /*background-color:rgba(204,204,204,0.5);   /*测试背景*/
+}
+.index_notice div{  /*内层div*/
+  height: 16vw;
+  width: 29vw;
+  border: 1px solid #cccccc;
+  -moz-border-radius: 1rem;      /*Gecko browsers*/
+  -webkit-border-radius: 1rem;   /*Webkit browsers*/
+  border-radius: 1rem;
+  background-color: rgba(204,204,204,0.5);     /*最后一位控制透明度*/
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  margin: 1vw auto auto 19.4vw;
+}
+.index_notice h3{ /*标题样式*/
+  height: 3.5vw;
+  overflow: hidden;               /*内容超出部分隐藏,避免撑高头部*/
+  text-align: left;
+  padding-top: 0.7vw;
+  padding-left: 1.5vw;
+  background-image: -moz-linear-gradient(top, #f05e6f, #c9394a);    /*Firefox*/
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f05e6f), color-stop(1, #c9394a));    /*Saf4+,Chrome*/
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8fa1ff', endColorstr='#f05e6f', GradientType=0);   /*IE*/
+  border: 1px solid #f05e6f;
+  -moz-border-radius: 1rem 1rem 0 0;      /*Gecko browsers*/
+  -webkit-border-radius: 1rem 1rem 0 0;   /*Webkit browsers*/
+  border-radius: 1rem 1rem 0 0;
+  color: #fff;
+  margin: 0 0;
+}
+.index_notice div div{
+  height: 11vw;
+  width: 27vw;
+  margin: 0.5vw auto;
+  overflow: hidden;     /*内容超出部分隐藏,避免撑高头部*/
+  background-color: rgba(204,204,204,0);     /*最后一位控制透明度*/
+  box-shadow: 2px 2px 2px rgba(0,0,0,0);
+  border: 0;
+}
+.index_notice ul{
+  background-color:rgba(204,204,204,0);     /*最后一位控制透明度*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;            /*ul里内容居中*/
+}
+.index_notice ul li{
+  height: 2.5vw;
+  list-style: none;
+  margin: 0 2.5vw;
+}
+.index_notice ul li a{
+  font-size: medium;
+  float: left;        /*左浮动*/
+  color: #000000;
+  display: inline-block;
+  background: url(../images/icon_square.gif) no-repeat 5px center;    /*红色方块点图标*/
+  padding-left: 15px;
+  transition:0.5s;
+}
+.index_notice ul li a:hover{
+  background-color: #00B7FF;
+  font-size: 15px;
+  text-shadow: 0 -1px 2px #737373;
+}
+.index_notice ul li span{
+  float: right;
+  color: #7c7c7c;
+}
+
+/*index.hbs用户登录块*/
+.index_login{
+  height: 20%;
+  width: 50%;
+  display: inline;
+  /*background-color:rgba(204,204,204,0.5);   /*测试背景*/
+}
+.index_login div{
+  height: 16vw;
+  width: 29vw;
+  border: 1px solid #cccccc;
+  -moz-border-radius: 1rem;      /*Gecko browsers*/
+  -webkit-border-radius: 1rem;   /*Webkit browsers*/
+  border-radius: 1rem;
+  background-color: rgba(204,204,204,0.5);     /*最后一位控制透明度*/
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  margin: 1vw 19.4vw auto auto;
+  text-align: center;
+}
+.index_login h3{ /*标题样式*/
+  height: 3.5vw;
+  overflow: hidden;               /*内容超出部分隐藏,避免撑高头部*/
+  text-align: left;
+  padding-top: 0.7vw;
+  padding-left: 1.5vw;
+  background-image: -moz-linear-gradient(top, #f05e6f, #c9394a);    /*Firefox*/
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f05e6f), color-stop(1, #c9394a));    /*Saf4+,Chrome*/
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8fa1ff', endColorstr='#f05e6f', GradientType=0);   /*IE*/
+  border: 1px solid #f05e6f;
+  -moz-border-radius: 1rem 1rem 0 0;      /*Gecko browsers*/
+  -webkit-border-radius: 1rem 1rem 0 0;   /*Webkit browsers*/
+  border-radius: 1rem 1rem 0 0;
+  color: #fff;
+  margin: 0 0;
+}
+.index_login div form{
+  margin-top: 2vw;
+}
+/*index.hbs图片链接*/
+.index_pic_link{
+  height: 20%;
+  width: 100%;
+  margin-top: 0;
+  /*background-color:rgba(204,204,204,0.5);   /*测试背景*/
+}
+.index_pic_link div{
+  /*截取圆形图片div:隐藏(hidden)超过这个外层div的img标签的内容*/
+  display: inline-block;
+  position: relative;
+  height: 15vw;
+  width: 15vw;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto auto 0;
+  /*background-color: rgba(204,204,204,0.8);     /*显示div方便调整图片位置*/
+}
+.index_pic_link div a{
+  display: inline-block;
+  transition: 0.5s;
+}
+.index_pic_link div img{
+  /*高宽比约为3:4*/
+  /*height: 18vw;
+  width: 24vw;
+  border-radius: 100%;*/
+  height: 24vw;
+  width: 32vw;
+  margin-top: -6.5vw;
+  margin-left: -7.8vw;
+}
+.index_pic_link div a:hover{
+  opacity: 0.50;
+  filter: alpha(opacity=50);
+  -ms-filter: "alpha( opacity=50 )";
+  -moz-opacity: 0.50;
+}
+.index_pic_link div::before, .index_pic_link div::after {
+  z-index: 10;
+  opacity: 0;
+}
+.index_pic_link div::before {
+  content: " ";
+  /*border: 7.5vw solid rgba(0,0,0,0);*/
+  position: absolute;
+}
+.index_pic_link div::after {
+  content: attr(data-tip);
+  top: -8vw;
+  left: 5vw;
+  color: #ffffff;
+  background-color: rgba(0, 100, 255, 0.2);
+  border: 0.5vw solid rgba(0, 100, 255, 0.2);
+  border-radius: 50%;
+  position: relative;
+  transition: 0.5s;
+  text-shadow: 0.1vw 0.1vw 0.2vw #000000; /*-0.1vw -0.1vw 0.1vw #ffffff;  /*字体浮雕效果*/
+}
+.index_pic_link div:hover::before {
+  opacity: 0.5;
+}
+.index_pic_link div:hover::after {
+  opacity: 1;
+}
+
+/*index.hbs快捷导航*/
+.index_navi{
+  height: 1vw;
+  width: 100%;
+  /*background-color:rgba(204,204,204,0.5);   /*测试背景*/
+}
+.index_navi h3{
+  text-shadow: 0.1vw 0.1vw 0.1vw #000000; /*-0.1vw -0.1vw 0.1vw #ffffff;  /*字体浮雕效果*/
+  text-align: center;
+  margin-top: 6vw;
+  border: 0 solid rgba(0, 0, 0, 0);
+}
+
+/*student.hbs学生页面*/
+/*student.hbs背景图*/
+#student_bg{
+  position: fixed;
+  top: -3vw;
+  left: 0;                /*div固定屏幕左上方*/
+
+  height: 110%;
+  width: 100%;            /*div实现全屏效果*/
+
+  min-width: 50px;        /*div最小缩放值*/
+  z-index: -10;           /*div层级优先值*/
+  background-repeat: no-repeat;     /*背景无重复*/
+
+  -webkit-background-size: cover;
+  -o-background-size: cover;        /*图片随屏幕缩放*/
+
+  background-image: url(../images/student_bg.jpg);   /*背景图片url*/
+  background-position: center 0;    /*背景图片位置:居中,靠左对齐*/
+  background-size: 100% 100%;       /*长宽100%*/
+}
+
+/*con_rep.hbs联系维修人员*/
+/*con_rep.hbs背景图*/
+#con_rep_bg{
+  position: fixed;
+  top: -3vw;
+  left: 0;                /*div固定屏幕左上方*/
+
+  height: 100%;
+  width: 100%;            /*div实现全屏效果*/
+
+  min-width: 50px;        /*div最小缩放值*/
+  z-index: -10;           /*div层级优先值*/
+  background-repeat: no-repeat;     /*背景无重复*/
+
+  -webkit-background-size: cover;
+  -o-background-size: cover;        /*图片随屏幕缩放*/
+
+  background-image: url(../images/con_rep_bg.jpg);   /*背景图片url*/
+  background-position: center 0;    /*背景图片位置:居中,靠左对齐*/
+  background-size: 100% 100%;       /*长宽100%*/
+}
+
+/*con_adm.hbs联系管理员*/
+/*con_adm.hbs背景图*/
+#con_adm_bg{
+  position: fixed;
+  top: 0;
+  left: 0;                /*div固定屏幕左上方*/
+
+  height: 100%;
+  width: 100%;            /*div实现全屏效果*/
+
+  min-width: 50px;        /*div最小缩放值*/
+  z-index: -10;           /*div层级优先值*/
+  background-repeat: no-repeat;     /*背景无重复*/
+
+  -webkit-background-size: cover;
+  -o-background-size: cover;        /*图片随屏幕缩放*/
+
+  background-image: url(../images/con_adm_bg.jpg);   /*背景图片url*/
+  background-position: center 0;    /*背景图片位置:居中,靠左对齐*/
+  background-size: 100% 100%;       /*长宽100%*/
+}
+/*con_adm.hbs标题*/
+.con_adm_title{   /*通用外层div*/
+  height: 20%;
+  width: 100%;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;                /*内层div内容居中*/
+  /*background-color:rgba(204,204,204,0.5);   /*测试背景*/
+}
+.con_adm_title h1{  /*标题样式*/
+  color: #ffffff;
+  text-shadow: 0.4vw 0.4vw 0.1vw #000000; /*-0.1vw -0.1vw 0.1vw #ffffff;  /*字体浮雕效果*/
+  text-align: center;
+  margin-top: 5vw;
+}
+/*con_adm.hbs管理员信息*/
+.con_adm_info{    /*通用外层div*/
+  margin-top: 8vw;
+  height: 30%;
+  width: 100%;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;                /*内层div内容居中*/
+  /*background-color:rgba(204,204,204,0.5);   /*测试背景*/
+}
+.con_adm_info div{    /*立体牌背面层:level_1*/
+  margin-top: 6.5vw;
+  height: 16vw;
+  width: 39vw;
+  border: 1px solid #000000;
+  border-radius: 0 0 1rem 1rem;
+  background-color: rgba(255,255,255,0.7);     /*最后一位控制透明度*/
+  box-shadow: 0.3vw 0.3vw 0.1vw rgba(0,0,0,0.5);
+  transform: skew(-13deg,-2deg);
+}
+.con_adm_info div div{    /*正面信息层:level_2*/
+  margin: auto auto auto 4.2vw;
+  height: 18vw;
+  width: 39vw;
+  background-color: rgba(255,255,255,1);     /*最后一位控制透明度*/
+  box-shadow: 0.1vw 0.3vw 0.1vw rgba(0,0,0,0.5);    /*边框阴影*/
+  transform: skew(25deg,0deg);
+}
+.con_adm_info div div h3{
+  color: #000000;
+  /*text-shadow: 0.1vw 0.1vw 0.3vw #000000; /*-0.1vw -0.1vw 0.1vw #ffffff;  /*字体浮雕效果*/
+  text-align: center;
+}
+.con_adm_info div div div{  /*两个并列管理员信息层:level_3*/
+  margin: auto auto auto 1vw;
+  height: 15vw;
+  width: 18vw;
+  background-color: rgba(255,255,255,0);     /*最后一位控制透明度*/
+  box-shadow: 0.1vw 0.3vw 0.1vw rgba(0,0,0,0);    /*边框阴影*/
+  border-radius: 0;
+  border: 0 solid #000000;
+  position: relative;
+  transform: skew(0deg,0deg);
+  float: left;
+}
+.con_adm_info div div div div{  /*层内条状信息:level_4*/
+  height: 3vw;
+  width: 15vw;
+  background-color: rgba(255,255,255,0);     /*最后一位控制透明度*/
+  box-shadow: 0.1vw 0.3vw 0.1vw rgba(0,0,0,0);    /*边框阴影*/
+  border-radius: 0;
+  border: 0 solid #000000;
+  position: relative;
+  transform: skew(0deg,0deg);
+  margin: 0.3vw auto auto 1vw;
+}
+.con_adm_info div div div div div{    /*矢量图标*/
+  /*截取圆形图片div:隐藏(hidden)超过这个外层div的img标签的内容*/
+  position: relative;
+  height: 2.5vw;
+  width: 2.5vw;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 0.1vw solid #000000;
+  float: left;
+  /*background-color: rgba(204,204,204,0.8);     /*显示div方便调整图片位置*/
+}
+.con_adm_info div div div div div img{    /*矢量图标缩放*/
+  /*高宽比约为3:4*/
+  height: 21vw;
+  width: 28vw;
+  margin-top: -4.5vw;
+  margin-left: -16.7vw;
+}
+
+#admin_bg{
+  position: fixed;
+  top: 0;
+  left: 0;                /*div固定屏幕左上方*/
+
+  height: 100%;
+  width: 100%;            /*div实现全屏效果*/
+
+  min-width: 50px;        /*div最小缩放值*/
+  z-index: -10;           /*div层级优先值*/
+  zoom: 1;
+  background-color: #ffffff;
+  background-repeat: no-repeat;     /*背景无重复*/
+
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;        /*图片随屏幕缩放*/
+
+  background-position: center 0;    /*背景图片位置:居中,靠左对齐*/
+  background-image: url(../images/modify_bg.jpg);   /*背景图片url*/
+
+  //背景虚化
+  z-index: -1;
+  -webkit-filter: blur(10px);
+  filter: blur(5px);
+  transform: scale(1.2);
+}
+
+#blu_bg{
+  position: fixed;
+  top: 0;
+  left: 0;                /*div固定屏幕左上方*/
+
+  height: 100%;
+  width: 100%;            /*div实现全屏效果*/
+
+  min-width: 50px;        /*div最小缩放值*/
+  z-index: -10;           /*div层级优先值*/
+  zoom: 1;
+  background-color: #ffffff;
+  background-repeat: no-repeat;     /*背景无重复*/
+
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;        /*图片随屏幕缩放*/
+
+  background-position: center 0;    /*背景图片位置:居中,靠左对齐*/
+  background-image: url(../images/modify_bg.jpg);   /*背景图片url*/
+
+  //背景虚化
+  z-index: -1;
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+  transform: scale(1.2);
+}
+
+/*Modify.hbs管理员修改信息*/
+.modify_info{    /*通用外层div*/
+  margin: -1.4vw auto;
+  height: 100%;
+  width: 100%;
+  /*display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;                /*内层div内容居中*/
+  background-color:rgba(204,204,204,0.9);   /*测试背景*/
+  padding: 10vw;
+  /*background-image: url(../images/modify_bg.jpg);   /*背景图片url*/
+  /*z-index: -10;           /*div层级优先值*/
+}
+.modify_info div{  /*层内条状信息:level_4*/
+  height: 3vw;
+  width: 15vw;
+  background-color: rgba(255,255,255,0);     /*最后一位控制透明度*/
+  box-shadow: 0.1vw 0.3vw 0.1vw rgba(0,0,0,0);    /*边框阴影*/
+  border-radius: 0;
+  border: 0 solid #000000;
+  position: relative;
+  transform: skew(0deg,0deg);
+  margin: 0.3vw auto auto 1vw;
+  font-weight: bolder;
+}
+.modify_info div div{    /*矢量图标*/
+  /*截取圆形图片div:隐藏(hidden)超过这个外层div的img标签的内容*/
+  position: relative;
+  height: 2.5vw;
+  width: 2.5vw;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 0.1vw solid #000000;
+  float: left;
+  /*background-color: rgba(204,204,204,0.8);     /*显示div方便调整图片位置*/
+}
+.modify_info div div img{    /*矢量图标缩放*/
+  /*高宽比约为3:4*/
+  height: 21vw;
+  width: 28vw;
+  margin-top: -4.5vw;
+  margin-left: -16.7vw;
+}
+

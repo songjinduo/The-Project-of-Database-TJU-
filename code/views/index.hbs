@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>{{titile}}</title>
+    <script>
+        var Height = window.outerHeight;
+        var Width = window.outerWidth;
+        //alert(window.outerHeight);
+    </script>
+    <script>
+        function validateForm(){
+            var x=document.forms["login"]["id"].value;
+            var y=document.forms["login"]["pwd"].value;
+            if (x==null || x==""){
+                alert("账号必须填写");
+                return false;
+            }
+            if(y==null || y==""){
+                alert("密码必须填写")
+            }
+        }
+    </script>
+    <link href="../public/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+</head>
+{{>header}}
+<body>
+
+    <div>
+
+        <!--背景图片-->
+        <div id="index_bg"></div>
+
+        <!--背景框及主页标题-->
+        <div class="index_bgf">
+            <div>
+                <h1>天津大学假期宿舍管理</h1>
+                <div>
+                    <div class="mover-1"></div>
+                    <div class="mover-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--公告栏-->
+        <div class="index_notice">
+            <div>
+                <h3>通知公告</h3>
+                <div id="notice_box">
+                    <ul id="con1">
+                        <li><a href="/notice/1.html">寒暑假留校信息统计说明</a><br/><span>2019-04-01</span></li>
+                        <li><a href="/notice/1.html">学生注册激活说明</a><br/><span>2019-04-02</span></li>
+                        <li><a href="/notice/1.html">学生宿舍报修说明</a><br/><span>2019-04-03</span></li>
+                        <li><a href="/notice/1.html">学生电费提交说明</a><br/><span>2019-04-04</span></li>
+                        <li><a href="/notice/1.html">学生夜宿登记说明</a><br/><span>2019-04-05</span></li>
+                        <li><a href="/notice/1.html">各食堂开放信息</a><br/><span>2019-04-06</span></li>
+                        <li><a href="/notice/1.html">来访人员登记说明</a><br/><span>2019-04-07</span></li>
+                    </ul>
+                    <ul id="con2"></ul><!--滚动需要-->
+                    <ul id="con3"></ul><!--滚动需要-->
+                </div>
+            </div>
+        </div>
+
+        <!--用户登录-->
+        <div class="index_login">
+            <div>
+                <h3>系统登录</h3>
+
+                <form  name="login" action="/login" method="post" onsubmit="return validateForm()">
+                    账号: <input type="text" name="id"><br><br>
+                    密码: <input type="password" name="pwd"><br><br>
+                    <input type="submit" value="登录" class="center">
+                    <a href="/login" target="">忘记密码</a>
+                </form>
+
+                <script>if(Number({{flag}})==1) alert('密码输入错误，请重新输入')
+                else if(Number({{flag}})==2) alert('账号输入错误，请重新输入')
+                </script>
+            </div>
+        </div>
+
+        <!--快捷导航-->
+        <div class="index_navi">
+            <h3>快捷导航</h3>
+        </div>
+
+        <!--图片链接-->
+        <div class="index_pic_link">
+            <div style="margin: 0 auto auto 19vw" data-tip="联系维修人员"><a href="/con_rep"><img src="http://114.115.254.117/images/cont_serv.png" alt="cont_serv"></a></div>
+            <div data-tip="&nbsp联系管理员&nbsp"><a href="/con_adm"><img src="http://114.115.254.117/images/cont_admin.png" alt="cont_admin"></a></div>
+            <div data-tip="&nbsp&nbsp&nbsp网站简介&nbsp&nbsp&nbsp"><a href="/intro"><img src="http://114.115.254.117/images/web_intro.png" alt="web_intro"></a></div>
+            <div data-tip="&nbsp&nbsp&nbsp联系我们&nbsp&nbsp&nbsp"><a href="/"><img src="http://114.115.254.117/images/cont_us.png" alt="cont_us"></a></div>
+        </div>
+
+    </div>
+
+    <script>
+        var area = document.getElementById('notice_box');
+        var con1 = document.getElementById('con1');
+        var con2 = document.getElementById('con2');
+        var con3 = document.getElementById('con3');
+        var speed = 50;
+        area.scrollTop = 0;
+        con2.innerHTML = con1.innerHTML;
+        con3.innerHTML = con1.innerHTML;
+        function scrollUp(){
+            if(area.scrollTop >= con1.scrollHeight) {
+                area.scrollTop = 0;
+            }else{
+                area.scrollTop ++;
+            }
+        }
+        var myScroll = setInterval("scrollUp()",speed);
+        area.onmouseover = function(){
+            clearInterval(myScroll);
+        };
+        area.onmouseout = function(){
+            myScroll = setInterval("scrollUp()",speed);
+        };
+    </script>
+
+</body>
+</html>
+

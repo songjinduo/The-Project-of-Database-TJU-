@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>假期宿舍管理系统</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.css"/>
+    <link rel="stylesheet" href="../stylesheets/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="../stylesheets/jquery-ui.theme.min.css"/>
+    <link rel="stylesheet" href="../stylesheets/jquery-ui.structure.css"/>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function(){
+                //$("#test1").text("Hello world!");
+                alert('123')
+                $("#test1").load('../extra/bar-tick-align.html')
+                //$("#test1").html("<iframe src='../extra/bar-tick-align.html'></iframe>");
+            });
+            $("#btn2").click(function(){
+                $("#test2").html("<b>Hello world!</b>");
+                alert('123')
+            });
+            $("#btn3").click(function(){
+                $("#test3").val("RUNOOB");
+            });
+        });
+    </script>
+    <style>
+        ul.cur {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            float: left;
+        }
+        ul.cur2 {
+            background-color:#aaaaaa;
+            margin: 0;
+            padding: 0;
+            float: right;
+            width: 100px;
+        }
+        li a.cur {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        ul li:first-child{
+            background:#f90;
+        }
+        ul li:first-child a{
+            color:white;
+        }
+        iframe{
+            width:100%;
+            height:100%;
+            border:none;
+            background:none;
+        }
+        .box{
+            width:50%;
+            height:100%;
+            border:0 solid #f90;
+            border-radius:10px;
+            margin:40px auto;
+            background-color:rgba(204,204,204,0);   /*测试背景*/
+        }
+        .radius{
+            border-radius: 1rem 1rem 0 0;
+        }
+
+    </style>
+</head>
+{{>header_adm}}
+<bo class="clearfloat"></bo>
+<div>
+    <ul  class="cur">
+        <li><a class="active" href="/admin">可视化</a> </li>
+        <li><a class="cur" href="/admin/1">查询</a></li>
+        <li><a class="cur" href="/admin/2">来访登记</a></li>
+        <li><a class="cur" href="/admin/3">夜宿查询</a></li>
+        <li><a class="cur" href="/admin/4">关于</a></li>
+    </ul>
+</div>
+<div id="admin_bg"></div>
+<div class="box">
+    <legend style="background-color:#4CAF50;color: white" class="radius">学生信息记录情况</legend>
+    <div class="modify_info">
+        {{#each stu_mes}}
+            <div><div><img src="/images/con_adm_icon.jpg" alt="name" style="margin-top: -13.8vw; margin-left: -1.8vw;"></div><br/>&nbsp&nbsp&nbsp姓名：&nbsp{{name}}</div>
+            <div><div><img src="/images/con_adm_icon.jpg" alt="studentId"></div><br/>&nbsp&nbsp&nbsp学号：&nbsp{{studentId}}</div>
+            <div><div><img src="/images/con_adm_icon.jpg" alt="sex" style="margin-top: -13.8vw; margin-left: -6vw;"></div><br/>&nbsp&nbsp&nbsp性别：&nbsp{{sex}}</div>
+            <div><div><img src="/images/con_adm_icon.jpg" alt="sex" style="margin-top: -13.9vw; margin-left: -10.2vw;"></div><br/>&nbsp&nbsp&nbsp年级：&nbsp{{grade}}</div>
+            <div><div><img src="/images/con_adm_icon.jpg" alt="phoneNumber" style="margin-top: -4.7vw; margin-left: -20.4vw;"></div><br/>&nbsp&nbsp&nbsp电话号：&nbsp{{phoneNumber}}</div>
+            <div></div>
+
+            <form  name="allow" action="/admin/modify" method="post">
+            <label for="institute" class="title">宿舍楼:</label>
+            <select id="institute" name="apartment" onchange="searchTable()" style="width:120px">
+                <option value="isnull">未选择</option>
+                <option value="1">1斋</option>
+                <option value="2">2斋</option>
+            </select>
+
+            <label for="room" class="title">宿舍号:</label>
+            <input name="id" type="text" placeholder="宿舍号">
+
+            <button name={{studentId}} type="submit">提交</button>
+        </form>
+        {{/each}}
+    </div>
+</div>
+</body>
+
+</html>

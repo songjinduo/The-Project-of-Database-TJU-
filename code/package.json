@@ -1,0 +1,33 @@
+{
+  "name": "untitled",
+  "version": "0.0.0",
+  "private": true,
+  "config": {
+    "port": "5000"
+  },
+  "main": "./index",
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "~1.18.2",
+    "connect-multiparty": "^2.2.0",
+    "cookie-parser": "^1.4.3",
+    "debug": "~2.6.9",
+    "echarts": "^4.2.1",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "formidable": "*",
+    "hbs": "~4.0.1",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
+    "node-xlsx": "*",
+    "nodemon": "^1.18.10",
+    "sequelize": "^4.42.0",
+    "serve-favicon": "~2.4.5",
+    "silly-datetime": "^0.1.2"
+  }
+}

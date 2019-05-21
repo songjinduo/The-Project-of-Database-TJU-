@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jqueryui/style.css">
+    <link href="../public/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+        $(function() {
+            $( "#from" ).datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 3,
+                onClose: function( selectedDate ) {
+                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+            $( "#to" ).datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 3,
+                onClose: function( selectedDate ) {
+                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+        });
+        function setList(newStyle) {
+
+        };
+    </script>
+    <title>假期宿舍管理系统</title>
+    <style>
+        ul.cur {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            float: left;
+        }
+        li a.cur {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        ​
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        .main-menu {
+            color: #333333;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            width: 150px;
+            min-width: 100px;
+            float: left;
+            font-family: "MicrosoftYaHei";
+        }
+        .box{
+            width:53%;
+            height:64%;
+            border: 0 solid #ffffff;
+            border-radius: 1rem;
+            margin: 3vw auto;
+            overflow: scroll;
+        }
+
+        .box h3{
+            font-weight: bolder;
+            text-shadow: 0.2vw 0.2vw 1vw #4CAF50; /*-0.1vw -0.1vw 0.1vw #ffffff;  /*字体浮雕效果*/
+            text-align: left;
+            margin: 0 17vw;
+            border: 0 solid #ffffff;
+        }
+        .radius{
+            border-radius: 1rem 1rem 0 0;
+        }
+
+    </style>
+</head>
+
+{{>header_stu}}
+<bo class="clearfloat"></bo>
+<div>
+    <ul  class="cur" id = "example0">
+        <li><a id = "0" class="active" href="/student">学生信息</a> </li>
+        <li><a id = "1" class="cur" href="/student/1">离校登记</a> </li>
+        <li><a id = "2" class="cur" href="/student/2">回校登记</a></li>
+        <li><a id = "3" class="cur" href="/student/3">留校登记</a></li>
+        <li><a id = "4" class="cur" href="/student/4">夜宿登记</a></li>
+    </ul>
+</div>
+<script>
+    //var lis=document.getElementsByTagName("li");
+    var lis=document.querySelectorAll("#example0 li");
+    var len=lis.length;
+    //alert(len);
+    //切换页签样式：遍历li，给li绑定onclick事件
+    for(var i=0;i<len;i++){
+        lis[i].onclick=function(){
+            //切换页签样式↓
+            for(var i=0;i<len;i++){
+                if(lis[i]==this){//判断是否为当前对象
+                    lis[i].style.background="#4CAF50";
+                    //alert(lis[i].querySelector("a").style.color);
+                    console.log(lis[i]);
+                    lis[i].querySelector("a").style.color="white";
+                }else{
+                    lis[i].style.background="white";
+                    lis[i].querySelector("a").style.color="black";
+                }
+            }
+        }
+    }
+</script>
+
+{{#if page.page1}}
+    <script>
+        var jsDivId0 = document.getElementById("0");
+        var jsDivId1 = document.getElementById("1");
+        var jsDivId2 = document.getElementById("2");
+        var jsDivId3 = document.getElementById("3");
+        var jsDivId4 = document.getElementById("4");
+        jsDivId0.setAttribute("class", "cur");
+        jsDivId1.setAttribute("class", "active");
+        jsDivId2.setAttribute("class", "cur");
+        jsDivId3.setAttribute("class", "cur");
+        jsDivId4.setAttribute("class", "cur");
+    </script>
+    {{#if flag.flag1}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/leave" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">离校信息登记情况</legend>
+                状态：<b style="color: red">未登记</b><br>
+                </fieldset>
+                <fieldset><legend style="background-color: #4CAF50;color:white">信息登记</legend>
+                <p>请填写并提交以下信息进行登记：</p>
+                离校日期：<input name='date' type="text" id="datepicker">
+                携带行李类型:
+                <select name="luggage">
+                    <option value="无">无</option>
+                    <option value="背包">背包</option>
+                    <option value="行李箱">行李箱</option>
+                    <option value="其它">其它</option>
+                </select>
+                携带数量:
+                <select name="number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input type="submit" value="提交">
+                <input type="reset" value="重置">
+                </fieldset>
+            </form>
+        </div>
+    {{else}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/leave" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">离校信息登记情况</legend>
+            状态：<b style="color: green">已登记</b><br>
+            {{#each res}}<p>您登记的离校日期为：{{leavingDate}}</p>
+                <p>您登记的携带行李类型为：{{baggageType}}</p>
+                <p>您登记的携带行李数量为：{{baggageQuantity}}</p>
+            {{/each}}
+                </fieldset>
+                <fieldset><legend style="background-color: #4CAF50;color:white">登记信息变更</legend>
+                <p>若要注销您的登记信息请点击此按钮：<input type="submit" name="cancel" value="注销登记信息"></p>
+                <p>若要修改您的登记信息请重新填写并提交信息：</p>
+                离校日期：<input name='date' type="text" id="datepicker">
+                携带行李类型:
+                <select name="luggage">
+                    <option value="无">无</option>
+                    <option value="背包">背包</option>
+                    <option value="行李箱">行李箱</option>
+                    <option value="其它">其它</option>
+                </select>
+                携带数量:
+                <select name="number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input type="submit" name="update" value="提交">
+                <input type="reset" value="重置">
+                </fieldset>
+            </form>
+        </div>
+    {{/if}}
+{{/if}}
+
+{{#if page.page2}}
+    <script>
+        var jsDivId0 = document.getElementById("0");
+        var jsDivId1 = document.getElementById("1");
+        var jsDivId2 = document.getElementById("2");
+        var jsDivId3 = document.getElementById("3");
+        var jsDivId4 = document.getElementById("4");
+        jsDivId0.setAttribute("class", "cur");
+        jsDivId1.setAttribute("class", "cur");
+        jsDivId2.setAttribute("class", "active");
+        jsDivId3.setAttribute("class", "cur");
+        jsDivId4.setAttribute("class", "cur");
+    </script>
+    {{#if flag.flag2}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/return" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">回校信息登记情况</legend>
+                状态：<b style="color: red">未登记</b><br>
+                </fieldset>
+                <fieldset><legend style="background-color:#4CAF50;color: white">信息登记</legend>
+                <p>请填写并提交以下信息进行登记：</p>
+                回校日期：<input name='date' type="text" id="datepicker">
+                携带行李类型:
+                <select name="luggage">
+                    <option value="无">无</option>
+                    <option value="背包">背包</option>
+                    <option value="行李箱">行李箱</option>
+                    <option value="其它">其它</option>
+                </select>
+                携带数量:
+                <select name="number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input type="submit" value="提交">
+                <input type="reset" value="重置">
+                </fieldset>
+            </form>
+        </div>
+    {{else}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/return" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">回校信息登记情况</legend>
+                状态：<b style="color: green">已登记</b><br>
+                {{#each res}}<p>您登记的回校日期为：{{returningDate}}</p>
+                    <p>您登记的携带行李类型为：{{baggageType}}</p>
+                    <p>您登记的携带行李数量为：{{baggageQuantity}}</p>
+                {{/each}}
+                </fieldset>
+                <fieldset><legend style="background-color:#4CAF50;color: white">登记信息变更</legend>
+                    <p>若要注销您的登记信息请点击此按钮：<input type="submit" name="cancel" value="注销登记信息"></p>
+                <p>若要修改您的登记信息请重新填写并提交信息：</p>
+                回校日期：<input name='date' type="text" id="datepicker">
+                携带行李类型:
+                <select name="luggage">
+                    <option value="无">无</option>
+                    <option value="背包">背包</option>
+                    <option value="行李箱">行李箱</option>
+                    <option value="其它">其它</option>
+                </select>
+                携带数量:
+                <select name="number">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input type="submit" name="update" value="提交">
+                <input type="reset" value="重置">
+                </fieldset>
+            </form>
+        </div>
+    {{/if}}
+{{/if}}
+
+{{#if page.page3}}
+    <script>
+        var jsDivId0 = document.getElementById("0");
+        var jsDivId1 = document.getElementById("1");
+        var jsDivId2 = document.getElementById("2");
+        var jsDivId3 = document.getElementById("3");
+        var jsDivId4 = document.getElementById("4");
+        jsDivId0.setAttribute("class", "cur");
+        jsDivId1.setAttribute("class", "cur");
+        jsDivId2.setAttribute("class", "cur");
+        jsDivId3.setAttribute("class", "active");
+        jsDivId4.setAttribute("class", "cur");
+    </script>
+    {{#if flag.flag3}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/stay" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">留校信息登记情况</legend>
+                状态：<b style="color: red">未登记</b><br>
+                </fieldset>
+                <fieldset><legend style="background-color:#4CAF50;color: white">信息登记</legend>
+                <p>请填写并提交以下信息进行登记：</p>
+                留校起止时间：
+                <label for="from">从</label>
+                <input type="text" id="from" name="from">
+                <label for="to">到</label>
+                <input type="text" id="to" name="to">
+                <p>留校理由：</p>
+                <textarea rows="5" cols="50" name="reason"></textarea><br>
+                <input type="submit" value="提交">
+                <input type="reset" value="重置">
+                </fieldset>
+            </form>
+        </div>
+    {{else}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/stay" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">留校信息登记情况</legend>
+                状态：<b style="color: green">已登记</b><br>
+                    <p>您登记的留校开始日期为：{{myresult.beginTime}}</p>
+                    <p>您登记的留校结束日期为：{{myresult.endTime}}</p>
+                    <p>您登记的留校理由为：{{myresult.reason}}</p>
+                    {{#each res}}
+                        <p>您的宿舍分配状态为：{{info}}</p>
+                        <p>您被分配的宿舍楼为：{{buildingId}}</p>
+                        <p>您被分配的宿舍号为：{{roomId}}</p>
+                    {{/each}}
+                </fieldset>
+                <fieldset><legend style="background-color:#4CAF50;color: white">登记信息变更</legend>
+                    <p>若要注销您的登记信息请点击此按钮：<input type="submit" name="cancel" value="注销登记信息"></p>
+                <p>若要修改您的登记信息请重新填写并提交信息：</p>
+                留校起止时间：
+                <label for="from">从</label>
+                <input type="text" id="from" name="from">
+                <label for="to">到</label>
+                <input type="text" id="to" name="to">
+                <p>留校理由：</p>
+                <textarea rows="2" cols="50" name="reason"></textarea><br>
+                <input type="submit" name="update" value="提交">
+                <input type="reset" value="重置">
+                </fieldset>
+            </form>
+        </div>>
+    {{/if}}
+{{/if}}
+
+{{#if page.page4}}
+    <script>
+        var jsDivId0 = document.getElementById("0");
+        var jsDivId1 = document.getElementById("1");
+        var jsDivId2 = document.getElementById("2");
+        var jsDivId3 = document.getElementById("3");
+        var jsDivId4 = document.getElementById("4");
+        jsDivId0.setAttribute("class", "cur");
+        jsDivId1.setAttribute("class", "cur");
+        jsDivId2.setAttribute("class", "cur");
+        jsDivId3.setAttribute("class", "cur");
+        jsDivId4.setAttribute("class", "active");
+    </script>
+    {{#if flag.flag4}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/night" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">夜宿信息登记情况</legend>
+                状态：<b style="color: red">未登记</b><br>
+                </fieldset>
+                <fieldset><legend style="background-color:#4CAF50;color: white">信息登记</legend>
+                <p>请填写并提交以下信息进行登记：</p>
+                您今天是否在校住宿？
+                <input type="submit" value="是" name="answer">
+                <input type="submit" value="否" name="answer">
+                </fieldset>
+            </form>
+        </div>
+    {{else}}
+        <div class="box">
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/student/night" method="post">
+                <fieldset><legend style="background-color:#4CAF50;color: white">夜宿信息登记情况</legend>
+                状态：<b style="color: green">已登记</b><br>
+                {{#each res}}
+                    <p>您登记的今天是否在校住宿情况为：{{YN}}</p>
+                {{/each}}
+                </fieldset>
+                <fieldset><legend style="background-color:#4CAF50;color: white">登记信息变更</legend>
+                <p>若要注销您的登记信息请点击此按钮：<input type="submit" name="cancel" value="注销登记信息"></p>
+                <p>若要修改您的登记信息请重新填写并提交信息：</p>
+                您今天是否在校住宿？
+                <input type="submit" value="是" name="answer">
+                <input type="submit" value="否" name="answer">
+                </fieldset>
+            </form>
+        </div>
+    {{/if}}
+{{/if}}
+
+{{#if homepage.page0}}
+    <script>
+        var jsDivId0 = document.getElementById("0");
+        var jsDivId1 = document.getElementById("1");
+        var jsDivId2 = document.getElementById("2");
+        var jsDivId3 = document.getElementById("3");
+        var jsDivId4 = document.getElementById("4");
+        jsDivId0.setAttribute("class", "active");
+        jsDivId1.setAttribute("class", "cur");
+        jsDivId2.setAttribute("class", "cur");
+        jsDivId3.setAttribute("class", "cur");
+        jsDivId4.setAttribute("class", "cur");
+    </script>
+<div class="box">
+    <legend style="background-color:#4CAF50;color: white" class="radius">学生信息记录情况</legend>
+
+    {{#each res}}
+        <h3><p>姓名：{{name}}</p>
+            <p>学号：{{studentId}}</p>
+            <p>性别：{{sex}}</p>
+            <p>年龄：{{age}}</p>
+            <p>年级：{{grade}}</p>
+            <p>学院：{{college}}</p>
+            <p>专业：{{major}}</p>
+            <p>电话：{{phoneNumber}}</p>
+            <p>宿舍楼：{{buildingId}}</p>
+            <p>宿舍号：{{roomId}}</p>
+        </h3>
+    {{/each}}
+</div>
+{{/if}}
+
+
+<script>
+    if(Number({{submitflag}})==101) alert('提交成功')
+    else if(Number({{submitflag}})==100) alert('提交失败，请重试')
+    else if(Number({{submitflag}}==102) alert('宿舍已满，请联系管理员')
+</script>
+<body>
+
+<div id="student_bg"></div>
+</body>
+</html>

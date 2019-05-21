@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>假期宿舍管理系统</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.css"/>
+    <link rel="stylesheet" href="../stylesheets/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="../stylesheets/jquery-ui.theme.min.css"/>
+    <link rel="stylesheet" href="../stylesheets/jquery-ui.structure.css"/>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/jquery-ui.min.js"></script>
+    <script>
+
+        $(function() {
+            $( "#datepicker" ).datepicker({ minDate: -200, maxDate: "+1M +10D"});
+        });
+
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function(){
+                //$("#test1").text("Hello world!");
+                alert('123')
+                $("#test1").load('../extra/bar-tick-align.html')
+                 //$("#test1").html("<iframe src='../extra/bar-tick-align.html'></iframe>");
+            });
+            $("#btn2").click(function(){
+                $("#test2").html("<b>Hello world!</b>");
+                alert('123')
+            });
+            $("#btn3").click(function(){
+                $("#test3").val("RUNOOB");
+            });
+        });
+    </script>
+    <style>
+        ul.cur {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            float: left;
+        }
+        ul.cur2 {
+            background-color:#aaaaaa;
+            margin: 0;
+            padding: 0;
+            float: right;
+            width: 100px;
+        }
+        li a.cur {
+            display: block;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: white;
+        }
+        li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+        iframe{
+            width:100%;
+            height:100%;
+            border:none;
+            background:none;
+        }
+        .box{
+               width:80%;
+               height:85%;
+               border:1px solid #f90;
+               border-radius:10px;
+               margin:40px auto;
+               overflow: scroll;
+           }
+
+    </style>
+</head>
+{{>header_adm}}
+<div id="admin_bg"></div>
+<bo class="clearfloat"></bo>
+
+<div>
+    <ul  class="cur" id="example0">
+        <li><a id = "0" class="active" href="/admin">可视化</a> </li>
+        <li><a id = "1" class="cur" href="/admin/1">查询</a></li>
+        <li><a id = "2" class="cur" href="/admin/2">来访登记</a></li>
+        <li><a id = "3" class="cur" href="/admin/3">夜宿查询</a></li>
+    </ul>
+</div>
+
+    {{#if page.page1 }}
+        <script>
+            var jsDivId0 = document.getElementById("0");
+            var jsDivId1 = document.getElementById("1");
+            var jsDivId2 = document.getElementById("2");
+            var jsDivId3 = document.getElementById("3");
+            jsDivId0.setAttribute("class", "cur");
+            jsDivId1.setAttribute("class", "active");
+            jsDivId2.setAttribute("class", "cur");
+            jsDivId3.setAttribute("class", "cur");
+        </script>
+        <div class="box">
+            <fieldset><legend style="background-color:#4CAF50;color: white">假期住宿信息查询</legend>
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/admin" method="post" style="margin-left: 20px">
+                <label for="institute" class="title">学院:</label>
+                <select id="institute" name="institute" onchange="searchTable()" style="width:120px">
+                    <option value="isnull">未选择</option>
+                    <option value="智能与计算学部">智能与计算学部</option>
+                    <option value="材料科学与工程学院 ">材料科学与工程学院 </option>
+                    <option value="建筑工程学院">建筑工程学院</option>
+                    <option value="化工学院">化工学院</option>
+                    <option value="管理与经济学部">管理与经济学部</option>
+                    <option value="建筑学院">建筑学院</option>
+                    <option value="环境科学与工程学院">环境科学与工程学院</option>
+                    <option value="法学院">法学院</option>
+                    <option value="精密仪器与光电子工程学院">精密仪器与光电子工程学院</option>
+                    <option value="生命科学学院">生命科学学院</option>
+                    <option value="电气自动化与信息工程学院">电气自动化与信息工程学院</option>
+                    <option value="海洋科学与技术学院">海洋科学与技术学院</option>
+                    <option value="求是学部">求是学部</option>
+                    <option value="理学院">理学院</option>
+                    <option value="医学科学与工程学院">医学科学与工程学院</option>
+                </select>
+
+                <label for="Year" class="title">年级:</label>
+                <select id="Year" name="Year" onchange="searchTable()">
+                    <option value="isnull">未选择</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                 </select>
+
+                <label for="sex" class="title">性别:</label>
+                <select id="sex" name="sex" onchange="searchTable()" style="width:120px">
+                    <option value="isnull">未选择</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+
+                <input name="stu_id" type="text" placeholder="输入学号">
+                <input type="submit" value="查询">
+            </form>
+            </fieldset>
+            <table  width="90%" border="1" cellspacing="1" cellpadding="4" style="margin-left: 20px">
+                <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年级</th>
+                    <th>学院</th>
+                    <th>专业</th>
+                    <th>假期宿舍楼</th>
+                    <th>假期宿舍号</th>
+                    <th>联系方式</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                {{#each stu_mes}}
+                    <tr>
+                        <td>{{studentId}}</td>
+                        <td>{{name}}</td>
+                        <td>{{sex}}</td>
+                        <td>{{grade}}</td>
+                        <td>{{college}}</td>
+                        <td>{{major}}</td>
+                        <td>{{buildingId}}</td>
+                        <td>{{roomId}}</td>
+                        <td>{{phoneNumber}}</td>
+                        <td>
+                            <form  name="search" action="/admin/modify" method="post">
+                                <button name={{studentId}} type="submit">修改信息</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+
+        </div>
+    {{else if page.page2}}
+        <script>
+            var jsDivId0 = document.getElementById("0");
+            var jsDivId1 = document.getElementById("1");
+            var jsDivId2 = document.getElementById("2");
+            var jsDivId3 = document.getElementById("3");
+            jsDivId0.setAttribute("class", "cur");
+            jsDivId1.setAttribute("class", "cur");
+            jsDivId2.setAttribute("class", "active");
+            jsDivId3.setAttribute("class", "cur");
+        </script>
+        <div class="box">
+            <fieldset><legend style="background-color:#4CAF50;color: white">来访登记登记</legend>
+            <form  name="allow" action="/admin/reg" method="post" style="margin-left: 20px">
+                <input name="name" type="text" placeholder="来访者姓名">
+
+                <label for="institute" class="title">来访宿舍楼:</label>
+                <select id="institute" name="apartment" onchange="searchTable()" style="width:120px">
+                    <option value="isnull">未选择</option>
+                    <option value="1">1斋</option>
+                    <option value="2">2斋</option>
+                </select>
+
+                <label for="room" class="title">来访宿舍号:</label>
+                <input name="id" type="text" placeholder="宿舍号">
+
+                <button name="allow" type="submit">允许进入</button>
+            </form>
+            </fieldset>
+
+            <fieldset><legend style="background-color:#4CAF50;color: white">来访登记情况查询</legend>
+            <form  name="search" action="/admin/reg" method="post" style="margin-left: 20px">
+                <label for="institute" class="title">是否出楼:</label>
+                <select id="institute" name="where" onchange="searchTable()" style="width:120px">
+                    <option value="isnull">未选择</option>
+                    <option value="out">已出楼</option>
+                    <option value="in">未出楼</option>
+                </select>
+
+                <input name="name" type="text" placeholder="来访者姓名">
+
+                <button name="allow" type="submit">查询</button>
+
+            </form>
+            </fieldset>
+            <table  width="90%" border="1" cellspacing="1" cellpadding="4" style="margin-left: 20px">
+                <thead>
+                <tr>
+                    <th>记录ID</th>
+                    <th>姓名</th>
+                    <th>访问的宿舍楼</th>
+                    <th>入楼时间</th>
+                    <th>出楼时间</th>
+                </tr>
+                </thead>
+
+                {{#each visitors}}
+                    <tr>
+                        <td>{{recordId}}</td>
+                        <td>{{visitorName}}</td>
+                        <td>{{buildingId}}</td>
+                        <td>{{enterTime}}</td>
+                        {{#if leaveTime}}
+                            <td>{{leaveTime}}</td>
+                        {{else}}
+                            <td>未出楼</td>
+                            <td width="75">
+                                <form  name="search" action="/admin/reg_update" method="post">
+                                    <button name={{recordId}} type="submit">出楼登记</button>
+                                </form>
+                            </td>
+                        {{/if}}
+                    </tr>
+                {{/each}}
+
+            </table>
+        </div>
+
+        <script>
+            function update(){
+                var now = new Date();
+                var year = now.getFullYear();
+                var month = now.getMonth();
+                var day = now.getDay();
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+                var sendData = {
+                    year: year,
+                    month: month,
+                    day: day,
+                    hours: hours,
+                    minutes: minutes,
+                    seconds:seconds
+                };
+                $.ajax({
+                    type:"post",
+                    url:"/admin/reg_update",
+                    data:sendData,
+                    success:function(data){
+                        if(isStrEmpty(data.error)){
+                            $("#sendResult").text(sendResult);
+                        }else{
+                            $.alert(data.error);
+                        }
+                    },
+                    error:function(){
+                        alert("error");
+                    }
+                });
+            }
+        </script>
+    {{else if page.page3}}//夜宿查询
+    <script>
+        var jsDivId0 = document.getElementById("0");
+        var jsDivId1 = document.getElementById("1");
+        var jsDivId2 = document.getElementById("2");
+        var jsDivId3 = document.getElementById("3");
+        jsDivId0.setAttribute("class", "cur");
+        jsDivId1.setAttribute("class", "cur");
+        jsDivId2.setAttribute("class", "cur");
+        jsDivId3.setAttribute("class", "active");
+    </script>
+        <div class="box">
+            <fieldset><legend style="background-color:#4CAF50;color: white">夜宿信息查询</legend>
+            <input type="hidden" name="ignoreHead" value="1">
+            <form  name="search" action="/admin" method="post" style="margin-left: 20px">
+                <label for="register" class="title">登记情况：</label>
+                <select id="register" name="register" onchange="searchTable()" style="width:120px">
+                    <option value="isnull">未选择</option>
+                    <option value="Yes">夜宿</option>
+                    <option value="No">不夜宿</option>
+                </select>
+
+                <label for="date" class="title">日期:</label>
+                <input name = "date" type="text" id="datepicker">
+
+                <label for="sex" class="title">性别:</label>
+                <select id="sex" name="sex" onchange="searchTable()" style="width:120px">
+                    <option value="isnull">未选择</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+
+                <input name="stu_id2" type="text" placeholder="输入学号">
+                <input type="submit" value="查询">
+            </form>
+            </fieldset>
+            <table  width="90%" border="1" cellspacing="1" cellpadding="4" style="margin-left: 20px">
+                <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年级</th>
+                    <th>学院</th>
+                    <th>专业</th>
+                    <th>联系方式</th>
+                    <th>日期</th>
+                    <th>登记情况</th>
+                </tr>
+                </thead>
+
+                {{#each stu_mes2}}
+                    <tr>
+                        <td>{{studentId}}</td>
+                        <td>{{name}}</td>
+                        <td>{{sex}}</td>
+                        <td>{{grade}}</td>
+                        <td>{{college}}</td>
+                        <td>{{major}}</td>
+                        <td>{{phoneNumber}}</td>
+                        <td>{{date}}</td>
+                        <td>{{register}}</td>
+                    </tr>
+                {{/each}}
+                <!--<tbody id="tableList">-->
+                </tbody>
+            </table>
+            {{param}}
+        </div>
+    {{else}}
+        <script>
+            var jsDivId0 = document.getElementById("0");
+            var jsDivId1 = document.getElementById("1");
+            var jsDivId2 = document.getElementById("2");
+            var jsDivId3 = document.getElementById("3");
+            jsDivId0.setAttribute("class", "active");
+            jsDivId1.setAttribute("class", "cur");
+            jsDivId2.setAttribute("class", "cur");
+            jsDivId3.setAttribute("class", "cur");
+        </script>
+        <div class="box">
+            <h3>全校假期住宿情况可视化</h3>
+            <ul id="example1">
+                <li><a href="../extra/grade.html" target="content1">假期留校的年级分布</a></li>
+                <li><a href="../extra/college.html" target="content1">假期留校的专业分布</a></li>
+                <li><a href="../extra/sex.html" target="content1">假期留校的性别分布</a></li>
+            </ul>
+            <iframe src="../extra/grade.html" name="content1" style="width: 100%; height: 80%"></iframe>
+        </div>
+        <script>
+            var lis=document.querySelectorAll("#example1 li");
+            var len=lis.length;
+            lis[0].style.background="#f90";
+            //切换页签样式：遍历li，给li绑定onclick事件
+            for(var i=0;i<len;i++){
+                lis[i].onclick=function(){
+                    //切换页签样式↓
+                    for(var i=0;i<len;i++){
+                        if(lis[i]==this){//判断是否为当前对象
+                            lis[i].style.background="#f90";
+                            //alert(lis[i].querySelector("a"))
+                            lis[i].querySelector("a").style.color="white";
+                        }else{
+                            lis[i].style.background="white";
+                            lis[i].querySelector("a").style.color="black";
+                        }
+                    }
+                }
+            }
+        </script>
+
+    {{/if}}
+
+
+
+</body>
+
+</html>

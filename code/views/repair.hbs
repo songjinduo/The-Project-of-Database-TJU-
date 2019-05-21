@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>假期宿舍管理系统</title>
+
+    <style>
+
+        ul.cur {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            float: left;
+        }
+        li a.cur {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        ​
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+    </style>
+
+</head>
+{{>header_rep}}
+<body>
+<div id="admin_bg"></div>
+<!--
+<ul  class="cur">
+    <li><a class="active" href="#home">查询</a></li>
+    <li><a class="cur" href="#news">修改</a></li>
+    <li><a class="cur" href="#contact">登记</a></li>
+    <li><a class="cur" href="#about">关于</a></li>
+</ul>
+-->
+
+<div style="margin-left:8%;padding:1px 16px;height:1000px;">
+	<script type="text/javascript">
+		function solvedProblem(obj) {
+			if (obj.innerHTML == "未解决") {
+				alert("是否确认前往解决该问题?");
+				var str = obj.parentNode.parentNode.cells[0].innerHTML;
+				window.location.href='/solve_rep?appId='+ str + "&identity=repairman";
+			}
+		}
+	</script>
+	<div class="main-content-rep">
+		<h2>维修申请表</h2>
+		<table class="status">
+			<tr>
+				<td>编号</td>
+				<td>宿舍楼</td>
+				<td>房间号</td>
+				<td>报修项目</td>
+				<td>报修时间</td>
+				<td>联系方式</td>
+				<td>在宿舍日期</td>
+				<td>在宿舍时间</td>
+				<td>是否解决</td>
+				<td>解决时间</td>
+			</tr>
+			{{#each records}}
+				<tr>
+					<td>{{appId}}</td>
+					<td>{{buildingId}}</td>
+					<td>{{roomId}}</td>
+					<td>{{repairItem}}</td>
+					<td>{{applyDate}}</td>
+					<td>{{phoneNumber}}</td>
+					<td>{{spareDate}}</td>
+					<td>{{spareTime}}</td>
+					<td><a href="#" onclick="solvedProblem(this)">{{solved}}</a></td>
+					<td>{{solvedDate}}</td>
+				</tr>
+			{{/each}}
+		</table>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>假期宿舍管理系统</title>
+
+</head>
+{{>header}}
+<body>
+    <div id="con_rep_bg"></div>
+	<div class="login-bar">
+		<a class="apply_maintance" href="/con_rep">申请维修</a>
+		<a class="apply_status" href="/rep_status">查看申请信息</a>
+	</div>
+	<div class="main-content">
+		<script type="text/javascript">
+			function solvedProblem(obj) {
+				var str = obj.parentNode.parentNode.cells[0].innerHTML;
+				console.log(str);
+				console.log(obj.innerHTML);
+				if (obj.innerHTML == "正在解决") {
+
+					alert("是否确认该问题已经解决?");
+					window.location.href='/solve_rep?appId='+ str + "&identity=student";
+				}
+
+			}
+		</script>
+
+		<div class="login-bar">
+			<a class="apply_maintance" href="/con_rep">申请维修</a>
+			<a class="apply_status" href="/rep_status">查看申请信息</a>
+		</div>
+		<div class="main-content-">
+			<h2>维修申请表</h2>
+			<table class="status">
+				<tr>
+					<td>编号</td>
+					<td>宿舍楼</td>
+					<td>房间号</td>
+					<td>报修项目</td>
+					<td>报修时间</td>
+					<td>是否解决</td>
+					<td>解决时间</td>
+				</tr>
+				{{#each records}}
+					<tr>
+						<td>{{appId}}</td>
+						<td>{{buildingId}}</td>
+						<td>{{roomId}}</td>
+						<td>{{repairItem}}</td>
+						<td>{{applyDate}}</td>
+						<td><a href="#" onclick="solvedProblem(this)">{{solved}}</a></td>
+						<td>{{solvedDate}}</td>
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+	</div>
+</body>
+</html>

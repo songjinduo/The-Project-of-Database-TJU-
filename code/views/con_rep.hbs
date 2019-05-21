@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>假期宿舍管理系统</title>
+</head>
+{{>header}}
+<body>
+
+    <div id="con_rep_bg"></div>
+	<div class="login-bar">
+		<a class="apply_maintance" href="/con_rep">申请维修</a>
+		<a class="apply_status" href="/rep_status">查看申请信息</a>
+	</div>
+	<div class="main-content">
+		<h2>维修申请表</h2>
+		<form action="process_rep" method="post">
+			<table class="suggest">
+				<tr>
+					<td class="td-lable"><label for="buildingId"></label>宿舍楼</td>
+					<td>
+						<select name="buildingId" id="buildingId" class="select_button">
+							{{#each result}}
+								<option value="{{buildingId}}">{{name}}</option>
+							{{/each}}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="repairItem"></label>报修项目</td>
+					<td>
+						<select class="select_button" name="repairItem" id="repairItem">
+							<option value="门窗损坏">门窗损坏</option>
+							<option value="书桌损坏">书桌损坏</option>
+							<option value="衣柜损坏">衣柜损坏</option>
+							<option value="床板损坏">床板损坏</option>
+							<option value="门锁损坏">门锁损坏</option>
+							<option value="水龙头损坏">水龙头损坏</option>
+							<option value="热水器喷头损坏">热水器喷头损坏</option>
+							<option value="其他">其他</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="roomId">房间号</label></td>
+					<td><input type="text" id="roomId" name="roomId"></td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="studentId">学号</label></td>
+					<td><input type="text" id="studentId" name="studentId"></td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="name">姓名</label></td>
+					<td><input type="text" id="name" name="name"></td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="phoneNumber">联系方式</label></td>
+					<td><input type="text" id="phoneNumber" name="phoneNumber"></td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="date">在校日期</label></td>
+					<td><input type="date" id="date" name="date"></td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="time"></label>在校时间</td>
+					<td>
+						<select class="select_button" name="time" id="time">
+							<option value="8:00-10:00">8:00-10:00</option>
+							<option value="10:00-12:00">10:00-12:00</option>
+							<option value="13:00-15:00">13:00-15:00</option>
+							<option value="15:00-17:00">15:00-17:00</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="td-lable"><label for="description">报修项目描述</label></td>
+					<td><textarea class="description" name="description" id="description" cols="30" rows="10"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="td-btn">
+						<input type="submit" value="提交" id="sub">
+						<input type="reset" value="重新编写" id="reset">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+{{title}}
+</body>
+</html>

@@ -1,0 +1,383 @@
+/*页面初始化*/
+html, body, h1, h2, h3, p, ol, ul, li a{
+    padding: 0;
+    boder: 0;
+    margin: 0;
+    font-size: 100%;
+    font-weight: normal;
+}
+
+h3{
+    color: #7ab1a5
+}
+
+/*通用样式*/
+body {
+    background: #333333 url("images/bg-body.jpg") top left repeat;
+    font: normal normal 14px/24px 微软雅黑, 黑体, Verdana, Arial, sans-serif;
+    color: #444444;
+}
+
+h1{
+    margin: 10px 0 15px 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+h2{
+    margin: 10px 0 20px 0;
+    color: #7ab1a5;
+    text-align: center;
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+h3{
+    margin: 15px 0;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 3px;
+    font-size: 20px;
+    line-height: 36px;
+    font-weight: bold;
+}
+
+ul {
+    padding: 0 0 0 50px;
+}
+
+ol {
+    padding: 0 0 0 50px;
+}
+
+/*网页布局*/
+.header {
+    padding: 10px;
+    background: #005da6 url("images/bg-header.jpg") top left repeat;
+}
+
+.main-content {
+    padding: 20px;
+    border: 1px solid #dddddd;
+    margin: 30px 0 0 0;
+    width: 770px;
+    margin: 30px auto 0 auto;
+    background: #eeeeee url("images/bg-main.jpg") top left repeat;
+}
+
+/*登录条*/
+.login-bar {
+    position: fixed;
+    right: 30px;
+    top: 60px;
+    background-color: rgba(0, 30, 138, 0.75);
+    padding: 10px;
+    z-index: 99;
+}
+
+.login-bar a {
+    color: #ffffff;
+    text-decoration: none;
+    background: url("images/login-icon.gif") 0 0 no-repeat;
+    padding-left: 28px;
+    height: 28px;
+    /*内联块标签可以使得标签具有内联的属性, 同时可以有自己的宽和高*/
+    display: inline-block;
+    line-height: 28px;
+}
+
+.login-bar a.qq-login {
+    background-position: 0 0;
+}
+
+.login-bar a.weibo-login {
+    background-position: 0 -28px;
+}
+
+.login-bar a:hover {
+    text-decoration: underline;
+}
+
+/*logo*/
+.logo {
+    text-align: center;
+}
+
+/*页面导航条*/
+.nav{
+    padding-left: 0;
+    text-align: center;
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav a {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    height: 56px;
+    line-height: 56px;
+    font-weight: bold;
+    font-size: 19px;
+    padding: 26px;
+}
+
+.nav a:hover {
+    background-color: #a0000f;
+}
+
+/*菜单列表*/
+.recipes {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recipes li {
+    border: 1px solid #b56663;
+    padding: 15px;
+    margin: 15px 0;
+    /*height: 160px;*/
+}
+
+.recipes h3 {
+    border-bottom: 0;
+}
+
+.recipes a {
+    color: #7facaa;
+    text-decoration: none;
+}
+
+.recipes img {
+    width: 150px;
+    height: 150px;
+    float: left;
+    padding: 5px;
+    background-color: #ffffff;
+    margin-right: 10px;
+}
+
+.recipes p {
+    /*padding-left: 170px;*/
+    height: 91px;
+    overflow: hidden;
+}
+
+/*图片信息*/
+.photos li {
+    display: inline;
+}
+
+.photos {
+    padding: 0;
+}
+
+.footer {
+    padding: 10px 0 30px 0;
+}
+
+.footer p {
+    color: #cccccc;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+/*发布美食*/
+.suggest {
+    width: 100%;
+}
+
+.suggest td {
+    padding: 5px;
+}
+
+.suggest .td-label {
+    width: 200px;
+    text-align: right;
+}
+
+.suggest .td-btn {
+    text-align: center;
+}
+
+.suggest input[type=text] {
+    width: 500px;
+    padding: 7px;
+    border: 2px solid #79b1a3;
+}
+
+.suggest textarea {
+    width: 500px;
+    padding: 7px;
+    border: 2px solid #79b1a3;
+}
+
+#ingredients {
+    height: 100px;
+}
+
+#ingred {
+    height: 300px;
+}
+
+.suggest input[type=submit],  .suggest input[type=reset]{
+    width: 150px;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #666666;
+    border-radius: 12px;
+    border:none;
+    margin: 0 20px 30px 20px;
+}
+.suggest input[type=submit]:hover,  .suggest input[type=reset]:hover{
+    width: 150px;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: rgba(0, 50, 138, 0.65);
+    border-radius: 6px;
+    border: none;
+}
+
+.clear {
+    clear: both;
+}
+
+/*主页面样式区*/
+.home_imgbox {
+    height: 640px;
+    width: 100%;
+    background: url(images/main.jpg) center center no-repeat;
+    position: relative;
+}
+
+.home_imgbox .info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.home_imgbox .info_wrap {
+    background: url(images/nw_logo.gif) 0 center no-repeat;
+    height: 200px;
+    width: 670px;
+    margin: 0 auto;
+    padding-left: 320px;
+}
+
+.home_imgbox .info_wrap h3 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+    height: 44px;
+    border: 0;
+}
+
+.home_imgbox .info_wrap p {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 24px;
+    padding-top: 6px;
+}
+
+/*天气插件*/
+.weather {
+    position: absolute;
+    left: 30px;
+    top: 10px;
+}
+
+/* 下拉框样式 */
+.select_button{
+    display:block;
+    /*height:150px;*/
+    box-sizing:border-box;
+    outline:none;
+    -webkit-appearance:none;
+    cursor:default;
+    font-size:14px;
+    position:relative;
+    z-index:3;
+    background-color: rgba(255, 255, 255, 0.75);
+    width: 500px;
+    padding: 7px;
+    border: 2px solid #79b1a3;
+}
+
+.select_button option{
+    color:#222;
+    width: 517px;
+    padding: 7px;
+    border: 2px solid #79b1a3;
+    height: 300px;
+}
+.select_button option:hover{
+    color:#fff;
+    width: 517px;
+    padding: 7px;
+    border: 2px solid #79b1a3;
+    height: 300px;
+}
+.select_button option:checked{
+    background:#535353;
+    color:#fff;
+    width: 517px;
+    padding: 7px;
+    border: 2px solid #79b1a3;
+    height: 300px;
+}
+
+
+
+.suggest input[type=date] {
+    width: 500px;
+    padding: 7px;
+    border: 2px solid #79b1a3;
+}
+
+/*     */
+
+.status {
+    width: 100%;
+}
+
+.status td {
+    padding: 5px;
+    width: 200px;
+    font-size: 18px;
+}
+
+.status .td-label {
+    width: 200px;
+    text-align: right;
+}
+
+/*
+    维修人员视图
+*/
+
+.main-content-rep {
+    padding: 20px;
+    border: 1px solid #dddddd;
+    margin: 30px 0 0 0;
+    width: 1150px;
+    margin: 30px auto 0 auto;
+    background: #eeeeee url("images/bg-main.jpg") top left repeat;
+}
+
+.status {
+    width: 100%;
+}
+
+.status_rep .td {
+    padding: 5px;
+    width: 200px;
+    font-size: 13px;
+}
