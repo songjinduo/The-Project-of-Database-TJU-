@@ -15,5 +15,31 @@
   * notice——公告的静态html文件
   * stylesheets——存放css相关文件
 * routes——存放路由js文件
-  * admin.js——管理员主界面
-  * adim
+  * admin.js——管理员主界面逻辑
+  * con_adm.js——联系管理员界面逻辑
+  * con_rep.js——联系维修人员界面逻辑
+  * index.js——系统主界面逻辑
+  * intro.js——网站简介界面逻辑
+  * login.js——登录逻辑
+  * process_rep.js——处理维修申请表逻辑
+  * rep_status.js——显示学生视图的维修状态逻辑
+  * repair.js——维修人员界面逻辑
+  * solve_rep.js——处理问题申请的解决状态逻辑
+  * student.js——学生界面逻辑
+* view——存放系统页面文件(hbs模板)
+  * particials——网站头和尾部格式文件
+  * admin.hbs——管理员界面
+  * con_admin.hbs——联系管理员
+  * con_rep.hbs——联系维修人员
+  * index.hbs——系统主界面
+  * intro.hbs——网站简介
+  * login.hbs——登录界面
+  * Modify.hbs——管理员的修改界面
+  * rep_status——维修申请界面
+  * repair.hbs——维修人员界面
+  * student.hbs——学生界面
+* app.js——应用核心配置文件
+* package.json——项目依赖配置及开发者信息
+##### 运行（命令行）
+  * npm install——下载所有依赖库
+  * npm start——运行项目（端口：5000）
