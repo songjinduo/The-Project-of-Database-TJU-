@@ -1,1 +1,19 @@
-# database
+# 数据库课程设计大作业——假期留校宿舍管理系统
+##### 主目录
+* code——源代码
+* 设计说明书——项目文档
+* 系统安装说明书
+* 展示——ppt讲解展示
+##### 源代码目录
+* bin——入口文件存放目录
+* config——数据库配置目录（包括数据可配置信息和大部分的sql语句）
+* public——静态文件存放目录
+  * data——存放json数据
+  * extra——存放Echarts的html文件
+  * images——存放图片文件
+  * javascripts——存放js的相关库（例如jquery)
+  * notice——公告的静态html文件
+  * stylesheets——存放css相关文件
+* routes——存放路由js文件
+  * admin.js——管理员主界面
+  * adim
