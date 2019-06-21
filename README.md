@@ -45,3 +45,10 @@
   * npm start——运行项目（端口：5000）
 ##### 项目功能结构图
   ![image](https://github.com/songjinduo/database/blob/master/images/%E5%8A%9F%E8%83%BD%E7%BB%93%E6%9E%84%E5%9B%BE.png)
+##### 项目部分界面展示
+* 系统主界面
+ ![image](https://github.com/songjinduo/database/blob/master/images/%E9%A6%96%E9%A1%B5.png)
+* 管理员界面
+ ![image](https://github.com/songjinduo/database/blob/master/images/localhost_5000_admin%20(2).png)
+* 联系管理员
+ ![image](https://github.com/songjinduo/database/blob/master/images/con_rep.png)
