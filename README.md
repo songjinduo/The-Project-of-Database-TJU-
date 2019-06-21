@@ -44,4 +44,4 @@
   * npm install——下载所有依赖库
   * npm start——运行项目（端口：5000）
 ##### 项目功能结构图
-  
+  ![image](https://github.com/songjinduo/database/blob/master/images/%E5%8A%9F%E8%83%BD%E7%BB%93%E6%9E%84%E5%9B%BE.png)
